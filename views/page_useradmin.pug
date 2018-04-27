@@ -1,0 +1,52 @@
+extends page_layout2
+
+block content
+    if user && user.role=='admin'
+        .container
+            h1 #{title}
+            br
+            hr
+            h4 Add a User:
+            br
+            form(role='form' method='POST' action='/users/add')
+                .form-row.col-sm-6
+                    .form-group
+                        label(for='username') Username:
+                        input.form-control(class='loginfld', name='username', type='text', placeholder='' required)
+                    .form-group
+                        label(for='role') Role:
+                        select.form-control(class='loginfld' name='role', size='0' required)
+                            option(disabled='', selected='', value='')  -- Select a Role -- 
+                            option(value='admin') admin
+                            option(value='staff') staff
+                .form-row.col-sm-6
+                    .form-group
+                        label(for='password') Password:
+                        input.form-control(class='loginfld' name='password', type='password', placeholder='' required)
+                    .form-group
+                        label(for='password2') Confirm Password:
+                        input.form-control(class='loginfld' name='password2' type='password' placeholder='' required)
+                
+                input.btn.btn-info.btn-fswf1(type="submit", value="Submit User")
+            br
+            hr
+        .container
+            br
+            h4 All Users:
+            table.table
+                thead
+                    tr
+                        th(scope='col') Username
+                        th(scope='col') Role
+                        th(scope='col') Active                        
+                        th(scope='col') Actions
+                tbody
+                    each user, i in users
+                        tr
+                            td= user.username
+                            td= user.role
+                            td= user.active
+                            td
+                              a.btn.btn-info.btn-fswf3(href="/users/edit/"+user._id) Edit
+                              if user.role!=='admin'
+                                  button.btn.btn-danger.btn-sm.delete-user(href='#', data-id=user._id) Delete

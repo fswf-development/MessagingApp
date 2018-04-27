@@ -1,0 +1,28 @@
+extends page_layout2
+
+block content
+    if user
+        .container
+            h1 #{title}
+            br
+            hr
+            br
+            h4 #{title2}
+            table#histlog.table.table-striped.table-bordered(style='width:100%')
+                thead
+                    tr
+                        th(scope='col') Date/Time:
+                        th(scope='col') Sent To:
+                        th(scope='col') Text Message:
+                        th(scope='col') Status:
+                        //- th(scope='col') SID:                        
+                tbody
+                    each response, i in responses
+                        tr
+                            td= moment(response.dateSent).format("MM/DD/YY, HH:mm")
+                            td= response.to
+                            td= response.body
+                            td= response.status
+                            //- td
+                            //-     a.delete-msg(href='#' data-sid=response.sid title='Click to Delete Message')= response.sid
+                

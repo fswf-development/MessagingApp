@@ -1,0 +1,36 @@
+extends page_layout2
+
+block content
+    if user
+        .container
+            h1 #{title}
+            br
+            form(id="txtForm" role='form' method='POST' action='/messages/preview')
+                .form-group
+                    label(for='txtCustomMsg') Personalized Message:
+                    textarea.form-control(class='mlen' name='txtCustomMsg' placeholder='' required)
+                .form-group
+                    label(for='txtCustomFrom') From:
+                    input.form-control(class='mlen' name='txtCustomFrom' type='text' placeholder='')
+                .form-group
+                    label(for='txtFromGrp') Workgroup:
+                    select.form-control(class='mlen' name='txtFromGrp', size='0' required)
+                        option(disabled='', selected='', value='')  -- Select a Workgroup --
+                        each groupdd, i in groupdds
+                            option(value=groupdd.name) #{groupdd.name}
+                .form-row.col-sm-3
+                    .form-group
+                        label(for='txtClient1') Client Phone Number:
+                        input.form-control(name='txtClient1' type='number' placeholder='' min='2002000000' max='9999999999' required)
+                .form-row.col-sm-3
+                    .form-group
+                        label(for='txtCallback') Employee Phone Number:
+                        input.form-control(name='txtCallback', type='number' placeholder='' min='2002000000' max='9999999999' required)
+                br
+                .form-row
+                    .form-group
+                        input.btn.btn-info.btn-fswf1(type="submit", value="Preview/Send")
+                .form-row
+                    .form-group
+                        button.btn.btn-info.btn-fswf2.clrForm(type="button") Reset Form
+            br

@@ -1,0 +1,14 @@
+extends page_layout1
+
+block content
+    if user
+        .container
+            br
+            h5 #{title}
+            br
+            h6 Only authorized FSWF employees may use this messaging service for approved FSWF business. This service may not be used for personal use for any reason.
+            br 
+            h6 By clicking "I agree" below, FSWF employees agree that will adhere to the FSWF's professional and personal conduct policies and all client privacy policies.
+            br
+            a.btn.btn-info.btn-fswf3(href='/reminders') I Agree
+        br

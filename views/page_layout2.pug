@@ -1,0 +1,57 @@
+doctype html
+html
+    head
+        title FSWF Messaging App (2)
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='shortcut icon', type='image/png', href='/images/favicon.ico')
+        link(href='//fonts.googleapis.com/css?family=Raleway:400,300,600', rel='stylesheet', type='text/css')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
+        link(rel='stylesheet', href='https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css')
+        link(rel='stylesheet', href='/css/style.css')
+        script(type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js')
+        script(type='text/javascript' src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js')
+        script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js')
+        script(type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js')
+        script(type='text/javascript' src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js')
+        script(type='text/javascript' src='/js/main.js')
+    body
+        .container#navbarContainer
+            nav.navbar.navbar-expand-sm.fswf-navbg
+                ul.navbar-nav
+                    if user
+                        li.nav-item
+                            a.nav-link(href='/reminders') Reminders
+                        li.nav-item
+                            a.nav-link(href='/messages') Messages
+                        li.nav-item
+                            a.nav-link(href='/twilio/history') Text Msg History
+                        if user.role=='admin'
+                            li.nav-item
+                                a.nav-link(href='/users') User Admin
+                            li.nav-item
+                                a.nav-link(href='/groupdd') Workgroup Admin
+                            li.nav-item
+                                a.nav-link(href='/reminderdd') Reminder Msg Admin
+                        li.nav-item
+                            a.nav-link(href='/login/logout') Logout
+            .image.logo
+                img(src='/images/25yrlogo.png')
+            br
+            != messages('include_msgs', locals)
+            if errors
+              each error, i in errors
+                div.alert.alert-danger.alert-dismissible.fade.show #{error.msg}
+                    button(type="button" class="close" data-dismiss="alert") &times;
+
+        block content
+        .container
+            if !user
+                br
+                h5 Please log in 
+                    a(href="/") here
+            hr
+            footer
+                .myfooter.monkey-l
+                    p Copyright ©2018 Fresh Start Women's Foundation
+                .myfooter.monkey-r
+                    p 2018/04/25.v01

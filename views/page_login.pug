@@ -1,0 +1,21 @@
+extends page_layout1
+
+block content
+    if !user
+        .container
+            br
+            h1 Please log in...
+            form(role='form',method='POST', action='/login')
+                .form-group
+                    label(for='username') User Name:
+                    input.form-control(class='loginfld' name='username',type='text', placeholder='')
+                .form-group
+                    label(for='password') Password:
+                    input.form-control(class='loginfld' name='password',type='password', placeholder='')
+                input.btn.btn-info.btn-fswf1(type='submit', value='Login')
+            br
+    if user
+        .container
+            h3 Please your browser's Back button to go back to the application.  
+            br
+            h3 Otherwise, please Logout above to see Login Form
