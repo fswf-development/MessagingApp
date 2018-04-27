@@ -19,7 +19,7 @@ block content
                 tbody
                     each response, i in responses
                         tr
-                            td= moment(response.dateSent).format("MM/DD/YY, HH:mm")
+                            td= moment(response.dateSent).tz('America/Phoenix').format("MM/DD/YY, HH:mm")
                             td= response.to
                             td= response.body
                             td= response.status
