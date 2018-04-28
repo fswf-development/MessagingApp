@@ -23,16 +23,16 @@ let GroupDD = require('../models/groupdd');
 
   // POST: Add a Group Dropdown to DB
   router.post('/add', function(req,res){
-    req.checkBody('groupName', 'Workgroup name is required').notEmpty();
-    // Error check and handling
-    let errors = req.validationErrors();
-    if(errors){
-        // For Flash Messages
-        res.render('page_groupdd',{
-            errors:errors
-        });
-    } else {
-      // If no errors, create new Group name in DB
+    // req.checkBody('groupName', 'Workgroup name is required').notEmpty();
+    // // Error check and handling
+    // let errors = req.validationErrors();
+    // if(errors){
+    //     // For Flash Messages
+    //     res.render('page_groupdd',{
+    //         errors:errors
+    //     });
+    // } else {
+    //   // If no errors, create new Group name in DB
       let groupdd = new GroupDD();
       groupdd.name = req.body.groupName,
       groupdd.active = true,
@@ -45,7 +45,7 @@ let GroupDD = require('../models/groupdd');
             res.redirect('/groupdd');
           }
       });
-    }
+    // }
   });
 
   //DOM: Show 'Edit a Group' Page
@@ -60,14 +60,14 @@ let GroupDD = require('../models/groupdd');
 
   //POST: Edit a Group in the database
   router.post('/edit/:id', function(req,res){
-      req.checkBody('groupName', 'Workgroup name is required').notEmpty();
-      // Error check and handling
-      let errors = req.validationErrors();
-      if(errors){
-          res.render('page_groupddedit',{
-              errors:errors
-          });
-      } else {
+      // req.checkBody('groupName', 'Workgroup name is required').notEmpty();
+      // // Error check and handling
+      // let errors = req.validationErrors();
+      // if(errors){
+      //     res.render('page_groupddedit',{
+      //         errors:errors
+      //     });
+      // } else {
           let groupdd = {};
             groupdd.name = req.body.groupName,
             groupdd.active = true
@@ -81,7 +81,7 @@ let GroupDD = require('../models/groupdd');
                   res.redirect('/groupdd');
                 }
           });
-      }
+      // }
   });
 
   // DELETE: Removes user from database

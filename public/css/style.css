@@ -24,7 +24,7 @@ th {
   color: #178FB0;
   font: 16px "Raleway", Helvetica, Arial, sans-serif;
   font-weight: bold;
-  text-align: center;
+  /* text-align: center; */
 }
 td {
   color: #178FB0;

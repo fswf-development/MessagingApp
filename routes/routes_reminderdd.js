@@ -23,16 +23,16 @@ let ReminderDD = require('../models/reminderdd');
 
   // POST: Add a Reminder DD to DB
   router.post('/add', function(req,res){
-    req.checkBody('reminderMsg', 'Reminder message is required!').notEmpty();
-    // Error check and handling
-    let errors = req.validationErrors();
-    if(errors){
-        // For Flash Messages
-        res.render('page_reminderdd',{
-            errors:errors
-        });
-    } else {
-      // If no errors, create new reminder message in DB
+    // req.checkBody('reminderMsg', 'Reminder message is required!').notEmpty();
+    // // Error check and handling
+    // let errors = req.validationErrors();
+    // if(errors){
+    //     // For Flash Messages
+    //     res.render('page_reminderdd',{
+    //         errors:errors
+    //     });
+    // } else {
+    //   // If no errors, create new reminder message in DB
       let reminderdd = new ReminderDD();
       reminderdd.name = req.body.reminderMsg,
       reminderdd.active = true,
@@ -45,7 +45,7 @@ let ReminderDD = require('../models/reminderdd');
             res.redirect('/reminderdd');
           }
       });
-    }
+    // }
   });
 
   //DOM: Show 'Edit a Reminder' Page
@@ -60,14 +60,14 @@ let ReminderDD = require('../models/reminderdd');
 
   //POST: Edit a Reminder in the database
   router.post('/edit/:id', function(req,res){
-      req.checkBody('reminderMsg', 'Reminder message is required').notEmpty();
-      // Error check and handling
-      let errors = req.validationErrors();
-      if(errors){
-          res.render('page_reminderddedit',{
-              errors:errors
-          });
-      } else {
+      // req.checkBody('reminderMsg', 'Reminder message is required').notEmpty();
+      // // Error check and handling
+      // let errors = req.validationErrors();
+      // if(errors){
+      //     res.render('page_reminderddedit',{
+      //         errors:errors
+      //     });
+      // } else {
           let reminderdd = {};
             reminderdd.name = req.body.reminderMsg,
             reminderdd.active = true
@@ -77,11 +77,11 @@ let ReminderDD = require('../models/reminderdd');
                   console.log(err);
                   return;
               } else {
-                  req.flash('success alert-dismissible fade show', 'Reminder message "'+remainderdd.name+'" updated!');
+                  req.flash('success alert-dismissible fade show', 'Reminder message "'+reminderdd.name+'" updated!');
                   res.redirect('/reminderdd');
                 }
           });
-      }
+      // }
   });
 
   // DELETE: Removes reminder from database

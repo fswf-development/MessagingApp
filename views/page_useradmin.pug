@@ -48,5 +48,5 @@ block content
                             td= user.active
                             td
                               a.btn.btn-info.btn-fswf3(href="/users/edit/"+user._id) Edit
-                              if user.role!=='admin'
+                              if user.role!=='admin' || user.username!=='admin'
                                   button.btn.btn-danger.btn-sm.delete-user(href='#', data-id=user._id) Delete
